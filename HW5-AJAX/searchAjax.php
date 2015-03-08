@@ -1,15 +1,20 @@
+<?php session_start();
+    if ( !is_writable(session_save_path()) ) {
+       echo 'Session save path "'.session_save_path().'" is not writable!'; 
+    }
+    ini_set('display_errors', 'on'); error_reporting(-1);
+     ?>
+<!DOCTYPE html>
 <html>
     <head>
-        <title>searchAjax Page</title>
+        <title>HW-5 searchAjax Page</title>
     </head>
 
-
 <script language="javascript" type="text/javascript">
-
 //Browser Support Code
 function ajaxFunction(){
+        var urlParam = document.getElementById('searchName').value;  // try B
 	var ajaxRequest;  // The variable that makes Ajax possible!
-	
 	try{
 		// Opera 8.0+, Firefox, Safari
 		ajaxRequest = new XMLHttpRequest();
@@ -29,19 +34,13 @@ function ajaxFunction(){
 	}
 	// Create a function that will receive data sent from the server
 	ajaxRequest.onreadystatechange = function(){
-		if(ajaxRequest.readyState == 4){
-	              //document.myForm.time.value = ajaxRequest.responseText;
-                       document.getElementById("myDiv").innerHTML=ajaxRequest.responseText;
-		}
+	   if(ajaxRequest.readyState == 4){
+                 document.getElementById("myDiv").innerHTML=ajaxRequest.responseText;
+	    }
 	}
-        var urlParam = document.getElementById("searchForm").value;  // try B
-        //var urlParam = "< ?php echo $_url ? >";    // try C Not working
         //ajaxRequest.open("GET", "AJAXquery.php?searchName=Tillm", true);  // always works
-        ajaxRequest.open("GET", "AJAXquery.php?searchName="+urlParam, true);  // try B
-	//ajaxRequest.open("GET", urlParam, true); // try C Not working
+        ajaxRequest.open('GET', 'AJAXquery.php?searchName=' + urlParam, true);  // try B
 	ajaxRequest.send(null); 
-        //ajaxRequest.open("POST", "AJAXquery.php", true);
-        //ajaxRequest.send($_POST['username']); 
 }
 
 
@@ -49,17 +48,17 @@ function ajaxFunction(){
 <body>
 <!-- $searchName = $_POST['searchName'];  echo $searchName ; echo '<br />' ; -->
 
-
-<form id="searchForm" action="#" method="POST">  <!-- identifies target page for SUBMIT -->
-    searchName: <input type="text" name="searchName"/><br /> 
-    <input type="submit" value="Click to confirm"/> 
+enter a search string, then click the AjaxSearch button
+ <form id="AjaxForm" name="""AjaxForm" > 
+     <label>
+         Name: <input type="text" name="searchName" id="searchName"/><br />
+     </label>
+    <input type="button" value="AjaxSearch" onclick="ajaxFunction();"/> 
 </form> 
-<?php $searchName = $_POST['searchName'];  echo $searchName ; echo '<br />' ;
-echo "in searchAjax" ;  echo '<br />' ; 
- $_url = "AJAXquery.php?searchName=".$searchName ; echo $_url    ?>
+    
 
 <div id="myDiv"><h3>search results will appear here</h3></div>
-<button type="button" onclick="ajaxFunction()">Begin Search</button>
+
 <br/>
 
 </body>

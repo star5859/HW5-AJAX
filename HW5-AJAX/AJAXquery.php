@@ -1,9 +1,9 @@
 <?php 
  //echo date("H:i:s");  
-//$searchName = $_GET['searchName'];
-$searchName = $_REQUEST['searchName'];  // from google w3schools: $q = $_REQUEST["q"];
+$searchName = $_GET['searchName'];
+//$searchName = $_REQUEST['searchName'];  // from google w3schools: $q = $_REQUEST["q"];
 echo "in AJAXquery.php   ";
-echo $searchName; 
+echo 'searchName= ' ; echo $searchName; 
 
     if (!($connection = mysql_connect("mysql.seis752.com","seis752john","ySAw48qrLe")))  {
        die("Error at mysql_connect" . mysql_error()); 
