@@ -7,9 +7,16 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script src="jquery.js"></script>   
         <title>HW-5 searchAjax Page</title>
     </head>
-
+        
+    <h3> navigation links </h3>
+    <ul class ="nav-tabs" >
+        <li class="tab-title"><a href="welcome.php">Tab WelcomePage</a></li>   
+        <li class="tab-title"><a href="#">Tab SearchAjaxPage</a></li>
+        <li class="tab-title"><a href="searchJquery.php">Tab SearchJqueryPage</a></li>
+    </ul>
 <script language="javascript" type="text/javascript">
 //Browser Support Code
 function ajaxFunction(){
@@ -35,7 +42,7 @@ function ajaxFunction(){
 	// Create a function that will receive data sent from the server
 	ajaxRequest.onreadystatechange = function(){
 	   if(ajaxRequest.readyState == 4){
-                 document.getElementById("myDiv").innerHTML=ajaxRequest.responseText;
+                 document.getElementById("ajDiv").innerHTML=ajaxRequest.responseText;
 	    }
 	}
         //ajaxRequest.open("GET", "AJAXquery.php?searchName=Tillm", true);  // always works
@@ -43,23 +50,40 @@ function ajaxFunction(){
 	ajaxRequest.send(null); 
 }
 
+$(document).ready(function(){
+   $("#jQueryButton").click(function(){
+        alert("jQueryButton");
+ 
+    });
+});
+
 
 </script>
 <body>
 <!-- $searchName = $_POST['searchName'];  echo $searchName ; echo '<br />' ; -->
 
 enter a search string, then click the AjaxSearch button
- <form id="AjaxForm" name="""AjaxForm" > 
+ <form id="AjaxForm" name="AjaxForm" > 
      <label>
          Name: <input type="text" name="searchName" id="searchName"/><br />
      </label>
     <input type="button" value="AjaxSearch" onclick="ajaxFunction();"/> 
 </form> 
-    
+  
+Ajax search results
+<div id="ajDiv"><h3>AJAX search results will appear here</h3></div>
 
-<div id="myDiv"><h3>search results will appear here</h3></div>
 
+<br/><br/><br/>
+ <form id="jQuesyForm" name="jQuesyForm" > 
+     <label>
+         Name: <input type="text" name="searchName" id="searchName"/><br />
+     </label>
+    <input type="button" value="jQuerySearch" id="jQueryButton"/> 
+</form> 
 <br/>
-
+jQuery search results
+<div id="jqDiv"><h3>jQuery search results will appear here</h3></div>
+<br/>
 </body>
 </html>

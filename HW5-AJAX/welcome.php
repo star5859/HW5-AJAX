@@ -11,12 +11,13 @@ ini_set('display_errors', 'on'); error_reporting(-1);
     </head>
     <h3> navigation links </h3>
     <ul class ="nav-tabs" >
-        <li class="tab-title active"> <a href ="index.php?">Tab IndexPage</a></li>
+        <li class="tab-title active"> <a href ="index.php?">Tab IndexPage  <-- you just came from here</a></li>
         <li class="tab-title"><a href="#">Tab WelcomePage</a></li>   
         <li class="tab-title"><a href ="profilePage.php">Tab ProfilePage</a></li> 
         <li class="tab-title"><a href="testPage.php">Tab TestPage</a></li> 
         <li class="tab-title"><a href="searchPage.php">Tab SearchPage</a></li>
         <li class="tab-title"><a href="searchAjax.php">Tab SearchAjaxPage</a></li>
+        <li class="tab-title"><a href="searchJquery.php">Tab SearchJqueryPage</a></li>
     </ul>
 <body>
     
