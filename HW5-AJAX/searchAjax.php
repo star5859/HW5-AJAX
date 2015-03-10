@@ -14,7 +14,7 @@
     <h3> navigation links </h3>
     <ul class ="nav-tabs" >
         <li class="tab-title"><a href="welcome.php">Tab WelcomePage</a></li>   
-        <li class="tab-title"><a href="#">Tab SearchAjaxPage</a></li>
+        <li class="tab-title"><a href="#">Tab SearchAjaxPage  <-- you are here</a></li>
         <li class="tab-title"><a href="searchJquery.php">Tab SearchJqueryPage</a></li>
     </ul>
 <script language="javascript" type="text/javascript">
@@ -49,15 +49,6 @@ function ajaxFunction(){
         ajaxRequest.open('GET', 'AJAXquery.php?searchName=' + urlParam, true);  // try B
 	ajaxRequest.send(null); 
 }
-
-$(document).ready(function(){
-   $("#jQueryButton").click(function(){
-        alert("jQueryButton");
- 
-    });
-});
-
-
 </script>
 <body>
 <!-- $searchName = $_POST['searchName'];  echo $searchName ; echo '<br />' ; -->
@@ -74,16 +65,6 @@ Ajax search results
 <div id="ajDiv"><h3>AJAX search results will appear here</h3></div>
 
 
-<br/><br/><br/>
- <form id="jQuesyForm" name="jQuesyForm" > 
-     <label>
-         Name: <input type="text" name="searchName" id="searchName"/><br />
-     </label>
-    <input type="button" value="jQuerySearch" id="jQueryButton"/> 
-</form> 
-<br/>
-jQuery search results
-<div id="jqDiv"><h3>jQuery search results will appear here</h3></div>
-<br/>
+
 </body>
 </html>

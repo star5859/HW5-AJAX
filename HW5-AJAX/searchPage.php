@@ -5,11 +5,12 @@ if ( !is_writable(session_save_path()) ) {
 }
 ini_set('display_errors', 'on'); error_reporting(-1);
 
-//echo '$_SESSION[sid] =   '; echo $_SESSION['sid']; echo '<br />' ;
-echo '$_SESSION[name] =  '; echo $_SESSION['name'];  echo '<br />' ;
-echo 'session_id() =     '; echo session_id();  echo '<br />' ;
-echo 'email =      '; echo  $_SESSION['email'] ;  echo '<br />' ; 
-echo 'password =   '; echo  $_SESSION['password'] ;  echo '<br />' ; 
+ if ($_SESSION['debug']==='TRUE') {
+    echo '$_SESSION[name] =  '; echo $_SESSION['name'];  echo '<br />' ;
+    echo 'session_id() =     '; echo session_id();  echo '<br />' ;
+    echo 'email =      '; echo  $_SESSION['email'] ;  echo '<br />' ; 
+    echo 'password =   '; echo  $_SESSION['password'] ;  echo '<br />' ; 
+}
 ?>
 <!DOCTYPE html>
      <head>
@@ -22,6 +23,8 @@ echo 'password =   '; echo  $_SESSION['password'] ;  echo '<br />' ;
         <li class="tab-title"><a href ="profilePage.php">Tab ProfilePage</a></li> 
         <li class="tab-title"><a href="testPage.php">Tab TestPage</a></li> 
     </ul>
+    <br/>
+    <h2>   results of search (with out AJAX or jQuery) </h2><br/>
   <?php
        $searchName = $_POST['searchName'];  echo $searchName ; echo '<br />' ;
        
@@ -32,7 +35,7 @@ echo 'password =   '; echo  $_SESSION['password'] ;  echo '<br />' ;
             die("Error at select_db" . mysql_errorno() .": " . mysql_error()); }
 
         $query = "SELECT `id`, `name` FROM `users` WHERE `name` LIKE '%" . $searchName . "%' LIMIT 0, 30 ";
-//$query = "SELECT `id`, `name` FROM `users` WHERE `name` LIKE 'Tillman' LIMIT 0, 30 ";
+        //$query = "SELECT `id`, `name` FROM `users` WHERE `name` LIKE 'Tillman' LIMIT 0, 30 ";
         if (!($result = mysql_query($query,$connection))) {
             die("Error at insert_query");  }
  

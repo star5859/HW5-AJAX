@@ -3,6 +3,13 @@ if ( !is_writable(session_save_path()) ) {
    echo 'Session save path "'.session_save_path().'" is not writable!'; 
 }
 ini_set('display_errors', 'on'); error_reporting(-1);
+ $_SESSION['debug'] = 'FALSE'; //    TRUE;      '';
+ if ($_SESSION['debug']==='TRUE') {
+    echo '$_SESSION[name] =  '; echo $_SESSION['name'];  echo '<br />' ;
+    echo 'session_id() =     '; echo session_id();  echo '<br />' ;
+    echo 'email =      '; echo  $_SESSION['email'] ;  echo '<br />' ; 
+    echo 'password =   '; echo  $_SESSION['password'] ;  echo '<br />' ; 
+}
  ?>
 <!DOCTYPE html>
 <html>
@@ -14,7 +21,7 @@ ini_set('display_errors', 'on'); error_reporting(-1);
         <li class="tab-title active"> <a href ="index.php?">Tab IndexPage  <-- you just came from here</a></li>
         <li class="tab-title"><a href="#">Tab WelcomePage</a></li>   
         <li class="tab-title"><a href ="profilePage.php">Tab ProfilePage</a></li> 
-        <li class="tab-title"><a href="testPage.php">Tab TestPage</a></li> 
+        <!-- <li class="tab-title"><a href="testPage.php">Tab TestPage</a></li>  -->
         <li class="tab-title"><a href="searchPage.php">Tab SearchPage</a></li>
         <li class="tab-title"><a href="searchAjax.php">Tab SearchAjaxPage</a></li>
         <li class="tab-title"><a href="searchJquery.php">Tab SearchJqueryPage</a></li>
@@ -22,17 +29,23 @@ ini_set('display_errors', 'on'); error_reporting(-1);
 <body>
     
     <?php
-         $email=$_POST['email'];
-         $password=$_POST["password"];
-         $name=$_POST["name"];
-         
+    if(!(isset($_SESSION['email']))){
+         $email= $_POST['email'];
+         $password= $_POST["password"];
+         $name= $_POST['name'];
+         echo "AAAAAAAAAAAA";
+    }  else {
+         $email= $_SESSION['email'];
+         $password= $_SESSION["password"];
+         $name= $_SESSION['name'];
+         echo "BBBBBBBBBBBBBBBBB";
+    }
          if (!($connection = mysql_connect("mysql.seis752.com","seis752john","ySAw48qrLe")))  {
            die("Error at mysql_connect" . mysql_error()); 
          }
         if (!mysql_select_db("seis752john_db",$connection))  {
             die("Error at select_db" . mysql_errorno() .": " . mysql_error()); }
 
-        //$query = "SELECT Passwords FROM `Users` WHERE UserNames = '".$email."' LIMIT 0, 10 ";
         $query = "SELECT `password` FROM `users` WHERE `username` = '".$email."' LIMIT 0, 10 ";
         if (!($result = mysql_query($query,$connection))) {
             die("Error at mysql_query");  }
@@ -55,13 +68,13 @@ ini_set('display_errors', 'on'); error_reporting(-1);
              $_SESSION['password'] = $password; 
              $_SESSION['name']   = $name;
 
-              echo '<br /><a href="profilePage.php?' . session_name() . ' ='  . session_id() . ' ">PROFILE_PAGE</a>' ;
-              
+             echo '<br />use the this link to see you rprofile, messages, etc';
+             echo '<br /><a href="profilePage.php?">PROFILE_PAGE</a><br />' ;
         } else {
              echo "password is WRONG";  
         } 
-        echo '<br />WELCOME ' ; $_POST["email"];  ?>
-    
+        echo '<br />'; echo "WELCOME "; echo $email;   ?>
+      <br />
       Your user ID is:  <?php echo $_SESSION['email']  ?>;
       Your name is:     <?php echo $_SESSION['name'] ?>;
       Your password is: <?php echo $_SESSION['password'];  ?> <br>
@@ -69,23 +82,11 @@ ini_set('display_errors', 'on'); error_reporting(-1);
       SESSION name is:  <?php echo $_SESSION['name'] ?>;
       SESSION(ID) is    <?php echo session_id() ?>;
      <br>
-     <?php
- /*    
-if(!isset($_COOKIE[$cookie_name])) {
-    echo "Cookie named '" . $cookie_name . "' is not set!";
-} else {
-    echo "Cookie '" . $cookie_name . "' is set!<br>";
-    echo "Value is: " . $_COOKIE[$cookie_name];
-}
-   $sql = "SELECT UserNames, Passwords\n"
-    . "FROM Users\n"
-    . "WHERE UserNames = \'sue@gmail.com\' ";
-*/
-?>
-     <h4><br />
-  Search by Name <br/>
-  Enter a name like: Lael Tillman or Tillman
-</h4>
+
+     <h4><br />  Search by Name  <br/></h4>
+     this search will POST to a php page; no AJAX or jQuery is used  <br/>
+     <h5> Enter a name like: Lael Tillman or Tillman</h5>
+
 <form action="searchPage.php" method="POST">  <!-- identifies target page for SUBMIT -->
     searchName: <input type="text" name="searchName"/><br /> 
     <input type="submit" value="Search"/> 

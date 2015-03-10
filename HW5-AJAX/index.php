@@ -1,7 +1,7 @@
 <?php ini_set('display_errors', 'on'); error_reporting(-1); ?>
 <!DOCTYPE html>
 <head>
-	<title>Simple Form</title>
+	<title>IndexPage  (Simple Login Form)</title>
         <link href="tabA.css" rel="stylesheet" type="text/css"/>
 </head>
  this form is the index page and it is where users land when 
@@ -21,8 +21,8 @@
   Enter a valid email address for your user ID
 </h1>
 <form action="welcome.php" method="POST">  <!-- identifies target page for SUBMIT -->
-    Name: <input type="text" name="name"/><br /> 
-    E-mail: <input type="text" name="email"><br>
+    Name: <input type="text" name="name" value='Lael Tillman'/><br /> 
+    E-mail: <input type="text" name="email" value='laeltillman'><br>
     Password: <input type="text" name="password" /><br /> 
     <input type="submit" value="Submit"/> 
 </form> 

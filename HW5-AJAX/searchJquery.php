@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>HW-5 searchAjax Page</title>
+        <title>HW-5 searchJqueryPage</title>
         <script type="text/javascript"  src="jquery.js"></script>   
         <script> 
             $(document).ready(function(){
@@ -31,8 +31,9 @@
         
     <h3> navigation links </h3>
     <ul class ="nav-tabs" >
-        <li class="tab-title"><a href="welcome.php">Tab WelcomePage</a></li>   
-        <li class="tab-title"><a href="#">Tab SearchJqueryPage</a></li>
+        <li class="tab-title"><a href="welcome.php">Tab WelcomePage</a></li> 
+        <li class="tab-title"><a href="searchAjax.php">Tab SearchAjaxPage</a></li>
+        <li class="tab-title"><a href="#">Tab SearchJqueryPage   <-- you are here</a></li>
     </ul>
 
 <body>
