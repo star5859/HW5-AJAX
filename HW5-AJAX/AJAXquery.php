@@ -1,7 +1,6 @@
 <?php 
  //echo date("H:i:s");  
 $searchName = $_GET['searchName'];
-//$searchName = $_REQUEST['searchName'];  // from google w3schools: $q = $_REQUEST["q"];
 echo "in AJAXquery.php   ";
 echo 'searchName= ' ; echo $searchName; 
 

@@ -3,8 +3,9 @@ if ( !is_writable(session_save_path()) ) {
    echo 'Session save path "'.session_save_path().'" is not writable!'; 
 }
 ini_set('display_errors', 'on'); error_reporting(-1);
- $_SESSION['debug'] = 'FALSE'; //    TRUE;      '';
- if ($_SESSION['debug']==='TRUE') {
+//if(!isset($_SESSION['email'])) { header("Location:index.php"); }
+$_SESSION['debug'] = 'FALSE'; //    TRUE;      'FALSE';
+if ($_SESSION['debug']==='TRUE') {
     echo '$_SESSION[name] =  '; echo $_SESSION['name'];  echo '<br />' ;
     echo 'session_id() =     '; echo session_id();  echo '<br />' ;
     echo 'email =      '; echo  $_SESSION['email'] ;  echo '<br />' ; 
@@ -15,6 +16,8 @@ ini_set('display_errors', 'on'); error_reporting(-1);
 <html>
     <head>
         <title>Welcome Page</title>
+        this page is where the user lands after logging in
+        it has links to the Profile pages and the HW5 search pages
     </head>
     <h3> navigation links </h3>
     <ul class ="nav-tabs" >
@@ -22,9 +25,9 @@ ini_set('display_errors', 'on'); error_reporting(-1);
         <li class="tab-title"><a href="#">Tab WelcomePage</a></li>   
         <li class="tab-title"><a href ="profilePage.php">Tab ProfilePage</a></li> 
         <!-- <li class="tab-title"><a href="testPage.php">Tab TestPage</a></li>  -->
-        <li class="tab-title"><a href="searchPage.php">Tab SearchPage</a></li>
-        <li class="tab-title"><a href="searchAjax.php">Tab SearchAjaxPage</a></li>
-        <li class="tab-title"><a href="searchJquery.php">Tab SearchJqueryPage</a></li>
+        <!-- <li class="tab-title"><a href="searchPage.php">Tab SearchPage</a></li>  -->
+        <li class="tab-title"><a href="searchAjax.php">Tab SearchAjaxPage (HW5)</a></li>
+        <li class="tab-title"><a href="searchJquery.php">Tab SearchJqueryPage (HW5)</a></li>
     </ul>
 <body>
     
@@ -33,12 +36,12 @@ ini_set('display_errors', 'on'); error_reporting(-1);
          $email= $_POST['email'];
          $password= $_POST["password"];
          $name= $_POST['name'];
-         echo "AAAAAAAAAAAA";
+         if ($_SESSION['debug']==='TRUE') {echo "AAAAAAAAAAAA";}
     }  else {
          $email= $_SESSION['email'];
          $password= $_SESSION["password"];
          $name= $_SESSION['name'];
-         echo "BBBBBBBBBBBBBBBBB";
+         if ($_SESSION['debug']==='TRUE') {echo "BBBBBBBBBBBBBBBBB";}
     }
          if (!($connection = mysql_connect("mysql.seis752.com","seis752john","ySAw48qrLe")))  {
            die("Error at mysql_connect" . mysql_error()); 

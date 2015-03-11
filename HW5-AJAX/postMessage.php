@@ -5,7 +5,7 @@ if ( !is_writable(session_save_path()) ) {
 }
 ini_set('display_errors', 'on'); error_reporting(-1);
 
- if ($_SESSION['debug']==='TRUE') {
+if ($_SESSION['debug']==='TRUE') {
     echo '$_SESSION[name] =  '; echo $_SESSION['name'];  echo '<br />' ;
     echo 'session_id() =     '; echo session_id();  echo '<br />' ;
     echo 'email =      '; echo  $_SESSION['email'] ;  echo '<br />' ; 

@@ -5,7 +5,7 @@ if ( !is_writable(session_save_path()) ) {
 }
 ini_set('display_errors', 'on'); error_reporting(-1);
 
- if ($_SESSION['debug']==='TRUE') {
+if ($_SESSION['debug']==='TRUE') {
     echo '$_SESSION[name] =  '; echo $_SESSION['name'];  echo '<br />' ;
     echo 'session_id() =     '; echo session_id();  echo '<br />' ;
     echo 'email =      '; echo  $_SESSION['email'] ;  echo '<br />' ; 
@@ -29,7 +29,7 @@ ini_set('display_errors', 'on'); error_reporting(-1);
         <h2    You are now on the Profile Page </h2><br>
         
         <?php $email = $_SESSION['email'];  
-        echo "_    "; echo $email ?> , Your friends are: 
+        echo "_hello    "; echo $email ?> , Your friends are: 
      <?php 
     if (!($connection = mysql_connect("mysql.seis752.com","seis752john","ySAw48qrLe")))  {
         die("Error at mysql_connect" . mysql_error()); 
