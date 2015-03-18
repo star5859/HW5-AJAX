@@ -15,6 +15,7 @@
     <li class="tab-title active"><a href="#">Tab IndexPage</a></li>
     <li class="tab-title"><a href="welcome.php">Tab WelcomePage</a></li>
     <li class="tab-title"><a href="profilePage.php">Tab ProfilePage</a></li>
+    <li class="tab-title"><a href ="auth.php">Tab auth Page</a></li> 
 </ul>
 <br>   
 <h1>SEIS752 Advanced Web Application Development<br />
@@ -31,6 +32,9 @@
     Password: <input type="text" name="password" /><br /> 
     <input type="submit" value="Submit"/> 
 </form> 
-
+<br /> <br /> 
+<a href="MapRequester.php">Link to maps page  </a>
+<br />
+<a href="twilio.php">Link to twilio page  </a>
 </body>
 </html>

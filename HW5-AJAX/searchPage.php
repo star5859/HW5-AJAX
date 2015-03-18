@@ -21,7 +21,7 @@ if ($_SESSION['debug']==='TRUE') {
         <li class="tab-title active"> <a href ="index.php?">Tab IndexPage</a></li>
         <li class="tab-title"><a href="welcome.php">Tab WelcomePage <-- you just came from here</a></li>   
         <li class="tab-title"><a href ="profilePage.php">Tab ProfilePage</a></li> 
-        <li class="tab-title"><a href="testPage.php">Tab TestPage</a></li> 
+        <!-- <li class="tab-title"><a href="testPage.php">Tab TestPage</a></li>  --> 
     </ul>
     <br/>
     <h2>   results of search (with out AJAX or jQuery) </h2><br/>
