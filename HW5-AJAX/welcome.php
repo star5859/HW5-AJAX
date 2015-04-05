@@ -48,10 +48,33 @@ if ($_SESSION['debug']==='TRUE') {
          }
         if (!mysql_select_db("seis752john_db",$connection))  {
             die("Error at select_db" . mysql_errorno() .": " . mysql_error()); }
-
-        $query = "SELECT `password` FROM `users` WHERE `username` = '".$email."' LIMIT 0, 10 ";
-        if (!($result = mysql_query($query,$connection))) {
-            die("Error at mysql_query");  }
+            
+  if ($newUser == "yes") {  // validate user -  see if email is already taken
+            $queryNu = "SELECT username FROM `users` WHERE userName = '".$email."' LIMIT 0, 10 ";
+           // echo $queryNu ; echo '</br>';
+            if (!($result = mysql_query($queryNu,$connection))) {
+                die("Error at mysql_query queryNu");  }
+            echo '<br />' ;
+            printf("A search for email address:  %s  found the following: \n",$email );
+            while ($row = mysql_fetch_array($result)) {
+                printf ("<TR><TD>%s</TD></TR>\n", $row[0]);
+                $isNewUser= $row[0];
+            }
+            mysql_free_result($result);
+            echo '<br />' ; echo '<br />' ;
+            if(!($isNewUser == "")) {
+                print("that Email address is already taken. Try another.\n");
+                $_SESSION['email'] = "";
+                $_SESSION['name'] = "";
+                $_SESSION['password'] =""; 
+            }
+         }
+        else {
+            $queryPwd = "SELECT password FROM `users` WHERE userName = '".$email."' LIMIT 0, 10 ";
+            echo $queryPwd ; echo '</br>';
+            //$queryPwd = "SELECT password FROM `users` WHERE userName = 'laeltillman' LIMIT 0, 10 ";
+            if (!($result = mysql_query($queryPwd,$connection))) {
+                die("Error at mysql_query queryPwd");  }
         print("<TABLE BORDER>\n");
         printf("<TR><TD>Passwords</TD></TR>\n");
         while ($row = mysql_fetch_array($result)) {
@@ -62,7 +85,8 @@ if ($_SESSION['debug']==='TRUE') {
 
         if (!mysql_close($connection))  {
             die("Error " . mysql_errorno() .": " . mysql_error()); }
-
+        mysql_free_result($result);
+        
          if( $password===$savedPassword) { //&& ($email ==='sam@gmail.com') ){   // WILL NEED MORE LOGIC + SQL LATER
              echo "password is CORRECT     " ; echo '<br />' ; 
              echo 'Welcome   '; echo '<br />' ;
@@ -70,13 +94,15 @@ if ($_SESSION['debug']==='TRUE') {
              $_SESSION['email']   = $email;
              $_SESSION['password'] = $password; 
              $_SESSION['name']   = $name;
-
-             echo '<br />use the this link to see you rprofile, messages, etc';
+         
+             echo '<br />use the this link to see your profile, messages, etc';
              echo '<br /><a href="profilePage.php?">PROFILE_PAGE</a><br />' ;
         } else {
              echo "password is WRONG";  
         } 
-        echo '<br />'; echo "WELCOME "; echo $email;   ?>
+        echo '<br />'; echo "WELCOME "; echo $email;
+        }
+    ?>
       <br />
       Your user ID is:  <?php echo $_SESSION['email']  ?>;
       Your name is:     <?php echo $_SESSION['name'] ?>;
@@ -86,7 +112,7 @@ if ($_SESSION['debug']==='TRUE') {
       SESSION(ID) is    <?php echo session_id() ?>;
      <br>
 
-     <h4><br />  Search by Name  <br/></h4>
+     <h3><br />  Search by Name  <br/></h3>
      this search will POST to a php page; no AJAX or jQuery is used  <br/>
      <h5> Enter a name like: Lael Tillman or Tillman</h5>
 
