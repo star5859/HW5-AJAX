@@ -25,9 +25,9 @@ if ($_SESSION['debug']==='TRUE') {
         <li class="tab-title active"> <a href ="#">Tab ProfilePage</a></li> 
         <li class="tab-title"><a href="postMessage.php">Tab PostMessagePage</a></li> 
     </ul>
+    <br>
+    <h2>    You are now on the Profile Page </h2><br>
 
-        <h2    You are now on the Profile Page </h2><br>
-        
         <?php $email = $_SESSION['email'];  
         echo "_hello    "; echo $email ?> , Your friends are: 
      <?php 
@@ -56,8 +56,17 @@ if ($_SESSION['debug']==='TRUE') {
     }
     printf("</TABLE>\n");
     mysql_free_result($result);
-    ?> <br /> <br /> click here   <a href ="ShowAllUsers.php">GoTO_ShowAllUsers</a>    
-    to see a list of all users,  and a form to make a new link to a  friend <br /> <br />   <?php
+    
+    ?> <br>   <br>   ENTER YourID, FriendID click SUBMIT to  UN-friend  someone
+    <form action="UNfriend.php" method="POST">  
+       yourID:  <input type="text" name="yourID"/><br /> 
+       friendID: <input type="text" name="friendID"/><br /> 
+    <input type="submit" value="Submit"/> 
+    </form>  
+   
+    ?> <br /> <br /> click here   <a href ="ShowAllUsers.php">GoTo_ShowAllUsers</a>    
+    to see a list of all users,  and a form to make a new link to a  friend <br /> <br />   
+    <?php
     $query = "SELECT message FROM `Messages` m, users u WHERE u.username ='" . $email . "' AND u.id = m.senderID ORDER BY timeStamp DESC";
     if (!($result = mysql_query($query,$connection))) {
         die("Error at mysql_query");  }
@@ -76,6 +85,7 @@ if ($_SESSION['debug']==='TRUE') {
        message: <input type="text" name="message"><br>
     <input type="submit" value="Submit"/> 
     </form> 
+    <br /> 
     for debugging  Sue = 1 , friend Ted = 3
         
     <br />   <br />  <?php

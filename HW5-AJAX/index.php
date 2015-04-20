@@ -30,6 +30,7 @@
     Name: <input type="text" name="name" /><br /> 
     E-mail: <input type="text" name="email" /><br>
     Password: <input type="text" name="password" /><br /> 
+    NewUser (yes/no): <input type="text" name="newUser" value="no" /><br /> 
     <input type="submit" value="Submit"/> 
 </form> 
 <br /> <br /> 
